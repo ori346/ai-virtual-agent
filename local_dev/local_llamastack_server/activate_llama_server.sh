@@ -14,11 +14,11 @@ else
   ollama ps
 fi
 
-podman run -it --platform linux/amd64 \
+podman run -it --rm --platform linux/amd64 \
     --name llama-server \
-    -p 8321:8321 \
-    -v ~/.llama:/root/.llama \
-    -v ./rum.yaml:/run.yaml \
+    --network host \
+    -v ~/.llama:/~/.llama:z \
+    -v ./run.yaml:/run.yaml:z \
     llamastack/distribution-ollama \
     --yaml-config /run.yaml \
     --port 8321

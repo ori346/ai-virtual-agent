@@ -1,0 +1,49 @@
+test_name: Test Models API Endpoint
+
+stages:
+  - name: Test GET /api/llama_stack/llms
+    request:
+      url: "{tavern.env_vars.TEST_FRONTEND_URL}/api/llama_stack/llms"
+      method: GET
+      headers:
+        Accept: application/json
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      verify_response_with:
+        function: tests.integration.validators:validate_models_response
+---
+
+test_name: Test Virtual Assistants API Endpoint
+
+stages:
+  - name: Test GET /api/virtual_assistants/
+    request:
+      url: "{tavern.env_vars.TEST_FRONTEND_URL}/api/virtual_assistants/"
+      method: GET
+      headers:
+        Accept: application/json
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      verify_response_with:
+        function: tests.integration.validators:validate_virtual_assistants_response
+---
+
+test_name: Test Tools API Endpoint
+
+stages:
+  - name: Test GET /api/llama_stack/tools
+    request:
+      url: "{tavern.env_vars.TEST_FRONTEND_URL}/api/llama_stack/tools"
+      method: GET
+      headers:
+        Accept: application/json
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      verify_response_with:
+        function: tests.integration.validators:validate_tools_response

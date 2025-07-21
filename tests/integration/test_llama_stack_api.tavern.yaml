@@ -1,0 +1,35 @@
+test_name: Test LlamaStack Embedding Models API
+
+marks:
+  - skip: "Temporarily skipping embedding models test"
+
+stages:
+  - name: Test GET /api/llama_stack/embedding_models
+    request:
+      url: "{tavern.env_vars.TEST_FRONTEND_URL}/api/llama_stack/embedding_models"
+      method: GET
+      headers:
+        Accept: application/json
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      json:
+        - name: "all-MiniLM-L6-v2"
+          provider_resource_id: "all-minilm:latest"
+          model_type: "model"
+---
+
+test_name: Test LlamaStack Providers API
+
+stages:
+  - name: Test GET /api/llama_stack/providers
+    request:
+      url: "{tavern.env_vars.TEST_FRONTEND_URL}/api/llama_stack/providers"
+      method: GET
+      headers:
+        Accept: application/json
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
